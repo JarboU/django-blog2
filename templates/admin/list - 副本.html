@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+    	<meta charset="utf-8">
+    	<!-- IE最高引擎 -->
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>后台管理</title>		
+
+		<!-- Fav and touch icons -->
+		<link rel="shortcut icon" href="../../static/ico/favicon.png" type="image/x-icon" />    
+
+	    <!-- Css files -->
+	    <link href="../../static/admin/css/bootstrap.min.css" rel="stylesheet">				
+		<link href="../../static/admin/css/font-awesome.min.css" rel="stylesheet">
+		<link href="../../static/admin/css/style.min.css" rel="stylesheet">
+
+	</head>
+</head>
+
+<div class="main_a">
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-laptop"></i> 添加文章</h3>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i>Home</li>
+                <li><i class="fa fa-laptop"></i>添加文章</li>   
+            </ol>
+        </div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<form class="manage-articles" method="post" action="">
+                <input id="csrf_token" name="csrf_token" type="hidden" value="1511174261##b10403351bde9dfe5b931ace3c331959919a718c">
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <select class="form-control" id="types_choice" name="types" required=""><option value="1">未分类</option><option value="2">Python</option><option value="3">Linux</option><option value="4">JavaScript</option><option value="5">Django</option><option value="8">MySQL</option><option value="9">Redis</option><option value="10">其它</option><option selected="" value="-1">全部分类</option></select>
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="form-control" id="source_choice" name="source" required=""><option value="1">2017-06</option><option value="2">2017-07</option><option value="3">2017-08</option><option selected="" value="-1">2017-11</option></select>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-search"></span> 筛选
+                        </button>
+                    </div>
+                    <div class="col-sm-2 col-sm-offset-4">
+                        <a class="btn btn-danger" id="delArticles">
+                            <span class="glyphicon glyphicon-trash"></span>批量删除
+                        </a>
+                    </div>
+                </div>
+            </form>
+		</div>
+	</div>
+	<div class="list-detials">
+            <form class="delete-articles" id="delArticlesForm" method="post" action="/admin/manage-articles/delete-articles?source_id=-1&amp;types_id=-1&amp;page=1">
+                <input id="csrf_token" name="csrf_token" type="hidden" value="1511174261##b10403351bde9dfe5b931ace3c331959919a718c">
+                <input id="articleIds" name="articleIds" type="hidden" value="">
+                
+                    <input id="articleId" name="articleId" type="hidden" value="">
+
+                </form>
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr class="table-header">
+                        <th class="table-checkbox-or-left"><input type="checkbox" id="select-all">全选</th>
+                        <th>博文标题</th>
+                        <th>分类</th>
+                        <th>发表日期</th>
+                        <th>编辑</th>
+                        <th>删除</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    
+                    <tr>
+                        <td class="table-checkbox-or-left"><input type="checkbox" class="op_check" value="100"></td>
+                        <td class="table-checkbox-or-left"><a href="/article-detials/100" target="_blank">!</a></td>
+                        <td>
+                            <a href="/article-sources/3/" target="_blank">
+                                ~
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/article-types/6/" target="_blank">
+                                ~
+                            </a>
+                        </td>
+                        <td><span class="" data-timestamp="2017-09-24T02:22:40Z" data-format="format('LLL')" data-refresh="0" style="">2017年9月24日上午10点22分</span></td>
+                        <td>
+                            <a href="/admin/edit-articles/100">
+                                <span class="glyphicon glyphicon-pencil" title="编辑博文"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <form class="delete-article" id="delForm100" method="post" action="/admin/manage-articles/delete-article?source_id=-1&amp;types_id=-1&amp;page=1">
+                                <input id="csrf_token" name="csrf_token" type="hidden" value="1511174261##b10403351bde9dfe5b931ace3c331959919a718c">
+                                <input id="articleId" name="articleId" type="hidden" value="100">
+                                <a class="btn btn-sm btn-default" onclick="delCfm(100)" title="删除博文">
+                                    <span class="glyphicon glyphicon-trash delete-article"></span>
+                                </a>
+                                
+                            </form>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="table-checkbox-or-left"><input type="checkbox" class="op_check" value="99"></td>
+                        <td class="table-checkbox-or-left"><a href="/article-detials/99" target="_blank">Felis ut sem quis lorem?</a></td>
+                        <td>
+                            <a href="/article-sources/2/" target="_blank">
+                                转载
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/article-types/10/" target="_blank">
+                                Linux成长之路
+                            </a>
+                        </td>
+                        <td><span class="" data-timestamp="2017-09-24T02:22:40Z" data-format="format('LLL')" data-refresh="0" style="">2017年9月24日上午10点22分</span></td>
+                        <td>
+                            <a href="/admin/edit-articles/99">
+                                <span class="glyphicon glyphicon-pencil" title="编辑博文"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <form class="delete-article" id="delForm99" method="post" action="/admin/manage-articles/delete-article?source_id=-1&amp;types_id=-1&amp;page=1">
+                                <input id="csrf_token" name="csrf_token" type="hidden" value="1511174261##b10403351bde9dfe5b931ace3c331959919a718c">
+                                <input id="articleId" name="articleId" type="hidden" value="99">
+                                <a class="btn btn-sm btn-default" onclick="delCfm(99)" title="删除博文">
+                                    <span class="glyphicon glyphicon-trash delete-article"></span>
+                                </a>
+                                
+                            </form>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="table-checkbox-or-left"><input type="checkbox" class="op_check" value="98"></td>
+                        <td class="table-checkbox-or-left"><a href="/article-detials/98" target="_blank">Amet eget donec odio felis?</a></td>
+                        <td>
+                            <a href="/article-sources/2/" target="_blank">
+                                转载
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/article-types/1/" target="_blank">
+                                未分类
+                            </a>
+                        </td>
+                        <td><span class="" data-timestamp="2017-09-24T02:22:40Z" data-format="format('LLL')" data-refresh="0" style="">2017年9月24日上午10点22分</span></td>
+                        <td>
+                            <a href="/admin/edit-articles/98">
+                                <span class="glyphicon glyphicon-pencil" title="编辑博文"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <form class="delete-article" id="delForm98" method="post" action="/admin/manage-articles/delete-article?source_id=-1&amp;types_id=-1&amp;page=1">
+                                <input id="csrf_token" name="csrf_token" type="hidden" value="1511174261##b10403351bde9dfe5b931ace3c331959919a718c">
+                                <input id="articleId" name="articleId" type="hidden" value="98">
+                                <a class="btn btn-sm btn-default" onclick="delCfm(98)" title="删除博文">
+                                    <span class="glyphicon glyphicon-trash delete-article"></span>
+                                </a>
+                                
+                            </form>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="table-checkbox-or-left"><input type="checkbox" class="op_check" value="97"></td>
+                        <td class="table-checkbox-or-left"><a href="/article-detials/97" target="_blank">Tincidunt nulla platea eleifend vel.</a></td>
+                        <td>
+                            <a href="/article-sources/3/" target="_blank">
+                                翻译
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/article-types/13/" target="_blank">
+                                思科网络技术
+                            </a>
+                        </td>
+                        <td><span class="" data-timestamp="2017-09-24T02:22:40Z" data-format="format('LLL')" data-refresh="0" style="">2017年9月24日上午10点22分</span></td>
+                        <td>
+                            <a href="/admin/edit-articles/97">
+                                <span class="glyphicon glyphicon-pencil" title="编辑博文"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <form class="delete-article" id="delForm97" method="post" action="/admin/manage-articles/delete-article?source_id=-1&amp;types_id=-1&amp;page=1">
+                                <input id="csrf_token" name="csrf_token" type="hidden" value="1511174261##b10403351bde9dfe5b931ace3c331959919a718c">
+                                <input id="articleId" name="articleId" type="hidden" value="97">
+                                <a class="btn btn-sm btn-default" onclick="delCfm(97)" title="删除博文">
+                                    <span class="glyphicon glyphicon-trash delete-article"></span>
+                                </a>
+                                
+                            </form>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="table-checkbox-or-left"><input type="checkbox" class="op_check" value="96"></td>
+                        <td class="table-checkbox-or-left"><a href="/article-detials/96" target="_blank">Amet donec in?</a></td>
+                        <td>
+                            <a href="/article-sources/1/" target="_blank">
+                                原创
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/article-types/2/" target="_blank">
+                                Python
+                            </a>
+                        </td>
+                        <td><span class="" data-timestamp="2017-09-24T02:22:40Z" data-format="format('LLL')" data-refresh="0" style="">2017年9月24日上午10点22分</span></td>
+                        <td>
+                            <a href="/admin/edit-articles/96">
+                                <span class="glyphicon glyphicon-pencil" title="编辑博文"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <form class="delete-article" id="delForm96" method="post" action="/admin/manage-articles/delete-article?source_id=-1&amp;types_id=-1&amp;page=1">
+                                <input id="csrf_token" name="csrf_token" type="hidden" value="1511174261##b10403351bde9dfe5b931ace3c331959919a718c">
+                                <input id="articleId" name="articleId" type="hidden" value="96">
+                                <a class="btn btn-sm btn-default" onclick="delCfm(96)" title="删除博文">
+                                    <span class="glyphicon glyphicon-trash delete-article"></span>
+                                </a>
+                                
+                            </form>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="table-checkbox-or-left"><input type="checkbox" class="op_check" value="95"></td>
+                        <td class="table-checkbox-or-left"><a href="/article-detials/95" target="_blank">Et duis justo a?</a></td>
+                        <td>
+                            <a href="/article-sources/3/" target="_blank">
+                                翻译
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/article-types/4/" target="_blank">
+                                JavaScript
+                            </a>
+                        </td>
+                        <td><span class="" data-timestamp="2017-09-24T02:22:40Z" data-format="format('LLL')" data-refresh="0" style="">2017年9月24日上午10点22分</span></td>
+                        <td>
+                            <a href="/admin/edit-articles/95">
+                                <span class="glyphicon glyphicon-pencil" title="编辑博文"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <form class="delete-article" id="delForm95" method="post" action="/admin/manage-articles/delete-article?source_id=-1&amp;types_id=-1&amp;page=1">
+                                <input id="csrf_token" name="csrf_token" type="hidden" value="1511174261##b10403351bde9dfe5b931ace3c331959919a718c">
+                                <input id="articleId" name="articleId" type="hidden" value="95">
+                                <a class="btn btn-sm btn-default" onclick="delCfm(95)" title="删除博文">
+                                    <span class="glyphicon glyphicon-trash delete-article"></span>
+                                </a>
+                                
+                            </form>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="table-checkbox-or-left"><input type="checkbox" class="op_check" value="94"></td>
+                        <td class="table-checkbox-or-left"><a href="/article-detials/94" target="_blank">Enim pharetra arcu eget?</a></td>
+                        <td>
+                            <a href="/article-sources/2/" target="_blank">
+                                转载
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/article-types/1/" target="_blank">
+                                未分类
+                            </a>
+                        </td>
+                        <td><span class="" data-timestamp="2017-09-24T02:22:40Z" data-format="format('LLL')" data-refresh="0" style="">2017年9月24日上午10点22分</span></td>
+                        <td>
+                            <a href="/admin/edit-articles/94">
+                                <span class="glyphicon glyphicon-pencil" title="编辑博文"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <form class="delete-article" id="delForm94" method="post" action="/admin/manage-articles/delete-article?source_id=-1&amp;types_id=-1&amp;page=1">
+                                <input id="csrf_token" name="csrf_token" type="hidden" value="1511174261##b10403351bde9dfe5b931ace3c331959919a718c">
+                                <input id="articleId" name="articleId" type="hidden" value="94">
+                                <a class="btn btn-sm btn-default" onclick="delCfm(94)" title="删除博文">
+                                    <span class="glyphicon glyphicon-trash delete-article"></span>
+                                </a>
+                                
+                            </form>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="table-checkbox-or-left"><input type="checkbox" class="op_check" value="93"></td>
+                        <td class="table-checkbox-or-left"><a href="/article-detials/93" target="_blank">Lectus auctor accumsan?</a></td>
+                        <td>
+                            <a href="/article-sources/3/" target="_blank">
+                                翻译
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/article-types/3/" target="_blank">
+                                Java
+                            </a>
+                        </td>
+                        <td><span class="" data-timestamp="2017-09-24T02:22:40Z" data-format="format('LLL')" data-refresh="0" style="">2017年9月24日上午10点22分</span></td>
+                        <td>
+                            <a href="/admin/edit-articles/93">
+                                <span class="glyphicon glyphicon-pencil" title="编辑博文"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <form class="delete-article" id="delForm93" method="post" action="/admin/manage-articles/delete-article?source_id=-1&amp;types_id=-1&amp;page=1">
+                                <input id="csrf_token" name="csrf_token" type="hidden" value="1511174261##b10403351bde9dfe5b931ace3c331959919a718c">
+                                <input id="articleId" name="articleId" type="hidden" value="93">
+                                <a class="btn btn-sm btn-default" onclick="delCfm(93)" title="删除博文">
+                                    <span class="glyphicon glyphicon-trash delete-article"></span>
+                                </a>
+                                
+                            </form>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="table-checkbox-or-left"><input type="checkbox" class="op_check" value="92"></td>
+                        <td class="table-checkbox-or-left"><a href="/article-detials/92" target="_blank">Amet nec ut porttitor condimentum!</a></td>
+                        <td>
+                            <a href="/article-sources/2/" target="_blank">
+                                转载
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/article-types/10/" target="_blank">
+                                Linux成长之路
+                            </a>
+                        </td>
+                        <td><span class="" data-timestamp="2017-09-24T02:22:40Z" data-format="format('LLL')" data-refresh="0" style="">2017年9月24日上午10点22分</span></td>
+                        <td>
+                            <a href="/admin/edit-articles/92">
+                                <span class="glyphicon glyphicon-pencil" title="编辑博文"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <form class="delete-article" id="delForm92" method="post" action="/admin/manage-articles/delete-article?source_id=-1&amp;types_id=-1&amp;page=1">
+                                <input id="csrf_token" name="csrf_token" type="hidden" value="1511174261##b10403351bde9dfe5b931ace3c331959919a718c">
+                                <input id="articleId" name="articleId" type="hidden" value="92">
+                                <a class="btn btn-sm btn-default" onclick="delCfm(92)" title="删除博文">
+                                    <span class="glyphicon glyphicon-trash delete-article"></span>
+                                </a>
+                                
+                            </form>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="table-checkbox-or-left"><input type="checkbox" class="op_check" value="91"></td>
+                        <td class="table-checkbox-or-left"><a href="/article-detials/91" target="_blank">Lacus id platea vestibulum.</a></td>
+                        <td>
+                            <a href="/article-sources/2/" target="_blank">
+                                转载
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/article-types/5/" target="_blank">
+                                Django
+                            </a>
+                        </td>
+                        <td><span class="" data-timestamp="2017-09-24T02:22:40Z" data-format="format('LLL')" data-refresh="0" style="">2017年9月24日上午10点22分</span></td>
+                        <td>
+                            <a href="/admin/edit-articles/91">
+                                <span class="glyphicon glyphicon-pencil" title="编辑博文"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <form class="delete-article" id="delForm91" method="post" action="/admin/manage-articles/delete-article?source_id=-1&amp;types_id=-1&amp;page=1">
+                                <input id="csrf_token" name="csrf_token" type="hidden" value="1511174261##b10403351bde9dfe5b931ace3c331959919a718c">
+                                <input id="articleId" name="articleId" type="hidden" value="91">
+                                <a class="btn btn-sm btn-default" onclick="delCfm(91)" title="删除博文">
+                                    <span class="glyphicon glyphicon-trash delete-article"></span>
+                                </a>   
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+        </div>
+
+    <div class="pagination">    
+    	<ul class="pagination">
+    		<li class="disabled">
+        		<a href="#">
+            		«
+        		</a>
+    		</li>
+            <li class="active">
+                <a href="#&amp;types_id=-1&amp;page=1">1</a>
+            </li>
+            <li>
+                <a href="#&amp;types_id=-1&amp;page=2">2</a>
+            </li>
+            <li>
+                <a href="#&amp;types_id=-1&amp;page=3">3</a>
+            </li>
+            <li>
+                <a href="#&amp;types_id=-1&amp;page=4">4</a>
+            </li>
+            <li>
+                <a href="#&amp;types_id=-1&amp;page=5">5</a>
+            </li>                
+        	<li class="disabled"><a href="#">…</a></li>
+            <li>
+                <a href="#&amp;types_id=-1&amp;page=9">9</a>
+            </li>
+            <li>
+                <a href="#&amp;types_id=-1&amp;page=10">10</a>
+            </li>
+    		<li>
+        		<a href="#&amp;types_id=-1&amp;page=2">
+            		»
+        		</a>
+    		</li>
+    	</ul>
+    </div>
+</div>
+</body>
+</html>

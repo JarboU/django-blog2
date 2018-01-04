@@ -1,0 +1,167 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+    	<meta charset="utf-8">
+    	<!-- IE最高引擎 -->
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>后台管理</title>		
+
+		<!-- Fav and touch icons -->
+		<link rel="shortcut icon" href="{% static 'ico/favicon.png' %}" type="image/x-icon" />
+
+	    <!-- Css files -->
+        <link rel="stylesheet" href="{% static 'admin/css/bootstrap.min.css'  %}" />
+        <link rel="stylesheet" href="{% static 'admin/css/jquery.mmenu.css' %}"/>
+        <link rel="stylesheet" href="{% static 'admin/css/style.min.css' %}"/>
+	    <link rel="stylesheet" href="{% static 'editormd/css/style.css'%}"/>
+		<link rel="stylesheet" href="{% static 'editormd/css/editormd.css' %}"/>
+	</head>
+
+<body>
+	<!-- start: Header -->
+	<div class="navbar" role="navigation">
+	
+		<div class="container-fluid">		
+			
+			<ul class="nav navbar-nav navbar-actions navbar-left">
+				<li class="visible-md visible-lg"><a href="#" id="main-menu-toggle"><i class="fa fa-th-large"></i></a></li>
+			</ul>
+			
+			<form class="navbar-form navbar-left">
+				<a><input type="text" class="form-control" placeholder="Search..."></a>
+				<button type="submit" class="fa fa-search"></button>
+			</form>
+	        <ul class="nav navbar-nav navbar-right">
+				<li class="dropdown visible-md visible-lg">
+					 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gears"></i></a>					
+					<ul class="dropdown-menu update-menu" role="menu">
+						<li><a href="#"><i class="fa fa-database"></i> Database </a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-bar-chart-o"></i> Connection </a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-bell"></i> Notification </a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-envelope"></i> Message </a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-flash"></i> Traffic </a>
+                        </li>
+						<li><a href="#"><i class="fa fa-credit-card"></i> Invoices </a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-dollar"></i> Finances </a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-thumbs-o-up"></i> Orders </a>
+                        </li>
+						<li><a href="#"><i class="fa fa-folder"></i> Directories </a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-users"></i> Users </a>
+                        </li>		
+					</ul>
+				</li>
+				<li class="dropdown visible-md visible-lg">
+	        		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="user-avatar" src="{% static 'img/avatar.jpg' %}">{{ username }}</a>
+	        		<ul class="dropdown-menu">
+						<li class="dropdown-menu-header">
+							<strong>帐户</strong>
+						</li>						
+						<li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+						<li><a href="#"><i class="fa fa-wrench"></i> Settings</a></li>
+						<li><a href="#"><i class="fa fa-file"></i> File <span class="label label-primary">27</span></a></li>
+						<li class="divider"></li>						
+						<li><a href="/logout/"><i class="fa fa-sign-out"></i> Logout</a></li>
+	        		</ul>
+	      		</li>
+				<li><a href="/"><i class="fa fa-hand-o-right"></i></a></li>
+			</ul>
+			
+		</div>
+		
+	</div>
+	<!-- end: Header -->
+	
+	<div class="container-fluid content">
+		<div class="row">
+				
+			<!-- start: Main Menu -->
+			<div class="sidebar ">
+								
+				<div class="sidebar-collapse">
+					<div class="navbar-header">
+
+                		<a class="navbar-brand" href="/admin/main"><strong><i class="icon fa fa-plane"></i> 林里克斯 后台管理</strong></a>
+                	</div>
+										
+					<div class="sidebar-menu" id="sidebarMenu">						
+						<ul class="nav nav-sidebar">
+							<li><a href="javascript:void(0);" data-link="/admin/add"><i class="fa fa-laptop"></i><span class="text"> 添加文章</span></a></li>
+							<li>
+								<a href="#"><i class="fa fa-file-text"></i><span class="text"> 文章管理</span> <span class="fa fa-angle-down pull-right"></span></a>
+								<ul class="nav sub">
+									<li><a href="javascript:void(0);" data-link="/admin/list"><i class="fa fa-list"></i><span class="text"> 文章列表</span></a></li>						
+									<li><a href="javascript:void(0);" data-link="/admin/love"><i class="fa fa-heart-o"></i><span class="text"> 收藏夹</span></a></li>
+									<li><a href="javascript:void(0);" data-link="/admin/recycle"><i class="fa fa-columns"></i><span class="text"> 回收站</span></a></li>
+									<li><a href="javascript:void(0);" data-link="/admin/category"><i class="fa fa-life-bouy"></i><span class="text"> 分类管理</span></a></li>
+								</ul>	
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-list-alt"></i><span class="text"> 目录和标签</span> <span class="fa fa-angle-down pull-right"></span></a>
+								<ul class="nav sub">
+									<li><a href="#"><i class="fa fa-indent"></i><span class="text"> 目录Menu</span></a></li>
+									<li><a href="#"><i class="fa fa-tags"></i><span class="text"> 标签Tags</span></a></li>
+								</ul>
+							</li>
+							<li><a href="#"><i class="fa fa-table"></i><span class="text"> 评论管理</span></a></li>				
+							<li><a href="calendar.html"><i class="fa fa-calendar"></i><span class="text"> Calendar</span></a></li>
+							<li><a href="/logout/"><i class="fa fa-power-off"></i><span class="text"> 退出</span></a></li>
+						</ul>
+					</div>					
+				</div>
+				<div class="sidebar-footer">					
+					
+					<div class="sidebar-brand">
+						Jarbo
+					</div>
+					
+					<ul class="sidebar-terms">
+						<li><a href="index.html#">Terms</a></li>
+						<li><a href="index.html#">Privacy</a></li>
+						<li><a href="index.html#">Help</a></li>
+						<li><a href="index.html#">About</a></li>
+					</ul>
+					
+					<div class="copyright text-center">
+						<small>Powered By Jarbo 2016-2017 </small>
+					</div>					
+				</div>	
+				
+			</div>
+			<!-- end: Main Menu -->
+		<!-- end: Content -->
+        </div>
+    </div><!--/container-->
+
+    <iframe id="main" class="main" src="/admin/list" ></iframe>
+
+	<div class="clearfix"></div>
+
+	<!-- start: JavaScript-->
+
+	<script src="{% static 'admin/js/jquery-2.1.1.min.js' %}"></script>
+	<script src="{% static 'admin/js/bootstrap.min.js' %}"></script>
+	
+	<!-- theme scripts -->
+	<script src="{% static 'admin/js/jquery.mmenu.min.js' %}"></script>
+	<script src="{% static 'admin/js/core.min.js' %}"></script>
+    <script type="text/javascript">
+            $("#sidebarMenu li a").click(function(){
+            	var link = $(this).attr("data-link");
+            	if(link){
+            		$("#main").attr("src",link);
+            	}
+            })
+    </script>
+
+	<!-- end: JavaScript-->
+</body>
+</html>

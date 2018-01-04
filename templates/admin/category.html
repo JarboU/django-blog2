@@ -1,0 +1,84 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+    	<meta charset="utf-8">
+    	<!-- IE最高引擎 -->
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="{% static 'ico/favicon.png' %}" type="image/x-icon" />
+
+        <!-- Css files -->
+        <link rel="stylesheet" href="{% static 'admin/css/bootstrap.min.css'  %}" />
+        <link rel="stylesheet" href="{% static 'admin/css/font-awesome.min.css' %}"/>
+        <link rel="stylesheet" href="{% static 'admin/css/style.min.css' %}"/>
+	</head>
+
+<body>
+<div class="main_a">
+	<div class="row">
+		<div class="col-lg-12">
+			<h3 class="page-header"><i class="fa fa-life-bouy"></i> 分类管理</h3>
+			<ol class="breadcrumb">
+				<li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+				<li><i class="fa fa-file-text"></i>文章管理</li>	
+				<li><i class="fa fa-life-bouy"></i>分类管理</li>					  	
+			</ol>
+
+			<form method="post" action="/admin/category">
+				<label class="blog_text pull-left" for="title">新建分类:</label>
+	            <input name="name" type="text" id="blog-title" class="form-control pull-left" placeholder="请输入分类" required autofocus/>
+
+	            <input type="submit" class="btn btn-primary" value="提交" />
+            </form>
+
+			<table class="table">
+	            <thead>
+	                <tr>
+	                    <th><input type="checkbox">全选</th>
+	                    <th>ID</th>
+	                    <th>名称</th>
+	                    <th>文章数量</th>
+	                    <th>编辑</th>
+	                    <th>删除</th>
+	                </tr>
+	            </thead>
+	        
+	        <tbody>
+	        	{% for i in category %}
+                <tr>
+                    <td class="table-checkbox-or-left"><input type="checkbox"></td>
+                    <td class="table-checkbox-or-left">{{ i.id }}</td>
+                    <td>
+                        <a href="#">
+                        {{i.name}}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-pencil" title="编辑博文"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <form method="post" action="/dela">
+                            <a class="btn btn-sm btn-default" title="删除博文">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>

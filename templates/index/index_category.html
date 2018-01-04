@@ -1,0 +1,71 @@
+{% load staticfiles %}
+{% load blog_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- IE最高引擎 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="{% static 'index/lib/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'index/lib/css/font-awesome.min.css' %}">
+
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="{% static 'index/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'index/css/themes/flat-blue.css' %}">
+</head>
+<body>
+<div class="app-container">
+    <div class="container-fluid">
+        <div class="side-body padding-top">
+            <div class="page-title">
+                <span class="title">分类</span>
+                <div class="description">category</div>
+            </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div class="title">category</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {% get_categories as category_list %}
+                        <ul>
+                            {% for category in category_list %}
+                            <li>
+                              <a href="{% url 'blog:category' category.pk %}">{{ category.name }}</a>
+                            </li>
+                            {% empty %}
+                            暂无分类！
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div class="title">归档</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {% get_date as date_list %}
+                        <ul>
+                            {% for date in date_list %}
+                            <li>
+                              <a href="{% url 'blog:archives' date.year date.month %}">{{ date.year }} 年 {{ date.month }} 月</a>
+                            </li>
+                            {% empty %}
+                            暂无归档！
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <!-- IE最高引擎 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="{% static 'index/lib/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'index/lib/css/font-awesome.min.css' %}">
+    
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="{% static 'index/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'index/css/themes/flat-blue.css' %}">
+</head>
+<body class="flat-blue">
+<div class="app-container">
+    <div class="container-fluid">
+        <div class="side-body padding-top">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <a href="#">
+                        <div class="card red summary-inline">
+                            <div class="card-body">
+                                <i class="icon fa fa-inbox fa-4x"></i>
+                                <div class="content">
+                                    <div class="title">50</div>
+                                    <div class="sub-title">文章</div>
+                                </div>
+                                <div class="clear-both"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <a href="#">
+                        <div class="card yellow summary-inline">
+                            <div class="card-body">
+                                <i class="icon fa fa-comments fa-4x"></i>
+                                <div class="content">
+                                    <div class="title">23</div>
+                                    <div class="sub-title">留言板</div>
+                                </div>
+                                <div class="clear-both"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <a href="/tags">
+                        <div class="card green summary-inline">
+                            <div class="card-body">
+                                <i class="icon fa fa-tags fa-4x"></i>
+                                <div class="content">
+                                    <div class="title">280</div>
+                                    <div class="sub-title">标签Tags</div>
+                                </div>
+                                <div class="clear-both"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <a href="/category">
+                        <div class="card blue summary-inline">
+                            <div class="card-body">
+                                <i class="icon fa fa-life-bouy fa-4x"></i>
+                                <div class="content">
+                                    <div class="title">16</div>
+                                    <div class="sub-title">分类</div>
+                                </div>
+                                <div class="clear-both"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="page-title">
+                <span class="title">index</span>
+                <div class="description">展示页面</div>
+            </div>
+
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div class="title">index</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {% for i in abcde %}
+                        <article class="post i-{{ i.pk }}">
+                        <h1 class="entry-title">
+                            <a href="/list/{{ i.pk }}/">{{ i.blog_title }}</a>
+                        </h1>
+                        </article>
+
+                        <article class="post i-{{ i.pk }}">
+                            <div class="entry-meta">
+                              <span class="post-category"><a href="#">{{ i.blog_category.name }}</a></span>
+                              <span class="post-date"><a href="#"><time class="entry-date"
+                                                                        datetime="{{ i.create_date }}">{{ i.create_date | date:"Y年m月d日 H:i:s" }}</time></a></span>
+                              <span class="post-author"><a href="#">{{ i.blog_author }}</a></span>
+                              <span class="comments-link"><a href="#">4 评论</a></span>
+                              <span class="views-count"><a href="#">588 阅读</a></span>
+                            </div>
+                        </article>
+
+                        <article class="post i-{{ i.pk }}">
+                            <div class="entry-content clearfix">
+                              <p>{{ i.blog_about }}</p>
+                              <div class="read-more cl-effect-14">
+                                <a href="/list/{{ i.pk }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+                              </div>
+                            </div>
+                        </article>
+                        {% empty %}
+                                <div class="no-post">暂时还没有发布的文章！</div>
+                        {% endfor %}
+                    </div>
+            </div>
+    </div>
+</div>
+
+<footer class="app-footer">
+    <div class="wrapper">
+        <span class="pull-right">2.1 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © Powered By Jarbo  2016-2017 - 备案号：<a href="http://www.miitbeian.gov.cn/" title="备案号" target="_blank">黔ICP备17001735号</a>
+    </div>
+</footer>
+</body>
+</html>
